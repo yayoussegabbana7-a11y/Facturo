@@ -16,7 +16,10 @@ html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.5}
 .wrap{max-width:960px;margin:0 auto;padding:0 20px}
 nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
-.logo{font-weight:800;font-size:22px;letter-spacing:-.02em}
+.logo{font-weight:800;font-size:22px;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+.pay{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border:1.5px solid var(--line);border-radius:10px;background:var(--card);font-weight:600;font-size:14px}
+.chip.soon{opacity:.6;border-style:dashed}
 .btn{display:inline-block;border:0;border-radius:10px;padding:12px 20px;font:600 16px inherit;font-family:inherit;background:var(--accent);color:var(--accent-ink);cursor:pointer;text-decoration:none}
 .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
 .btn:focus-visible,input:focus-visible{outline:3px solid var(--hi);outline-offset:2px}
@@ -55,12 +58,16 @@ blockquote cite{font-style:normal;color:var(--muted);font-size:14px}
 details{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:14px 18px;margin-top:10px}
 summary{font-weight:600;cursor:pointer}
 details p{margin:10px 0 0;color:var(--muted)}
+.steps{margin:0;padding-left:20px}
+.steps li{margin:8px 0}
+.wa{display:inline-block;margin-top:8px}
 footer{padding:32px 0 48px;color:var(--muted);font-size:14px;border-top:1.5px solid var(--line)}
 </style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B7A55'/%3E%3Cpath d='M9 7h11l4 4v14H9z' fill='white'/%3E%3Cpath d='M12 11h6' stroke='%230B7A55' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M13 17l3 3 5-6' stroke='%230B7A55' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 </head>
 <body>
 <div class="wrap">
-<nav><div class="logo">Facturo</div><a class="btn ghost" href="#tarifs">Voir les tarifs</a></nav>
+<nav><div class="logo"><svg width='30' height='30' viewBox='0 0 32 32' aria-hidden='true'><rect width='32' height='32' rx='8' style='fill:var(--accent)'/><path d='M9 7h11l4 4v14H9z' style='fill:var(--accent-ink)'/><path d='M12 11h6' style='stroke:var(--accent)' stroke-width='2' stroke-linecap='round'/><path d='M13 17l3 3 5-6' style='stroke:var(--accent)' fill='none' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg><span>Facturo</span></div><a class="btn ghost" href="#tarifs">Voir les tarifs</a></nav>
 
 <header class="hero">
 <div>
@@ -100,8 +107,22 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:14px;border-top:1.5px so
 <h3>Pro</h3>
 <div class="price">9 € <span>par mois</span></div>
 <ul><li>Factures et devis illimités</li><li>Votre logo et vos couleurs</li><li>Relances automatiques des impayés</li><li>Suivi des paiements</li></ul>
-<a class="btn" href="#essai">Passer au Pro</a>
+<a class="btn" href="#pro">Passer au Pro</a>
 </div>
+</div>
+</section>
+
+<section id="pro">
+<h2 class="t">Passer au Pro</h2>
+<p class="who">5 900 FCFA par mois (environ 9 €). Plusieurs moyens de paiement disponibles.</p>
+<div class="pay"><span class="chip"><svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><rect x='7' y='2' width='10' height='20' rx='2'/><path d='M11 18h2'/></svg>Mobile Money (MTN, Orange)</span><span class="chip"><svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><rect x='2' y='5' width='20' height='14' rx='2'/><path d='M2 10h20'/></svg>Carte MasterCard / virtuelle</span><span class="chip"><svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M3 10l9-6 9 6'/><path d='M5 10v8M10 10v8M14 10v8M19 10v8M3 20h18'/></svg>Virement (IBAN)</span><span class="chip soon"><svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><rect x='3' y='6' width='18' height='13' rx='2'/><path d='M16 12h5v3h-5z'/></svg>PayPal : bientôt</span></div>
+<div class="plan" id="payinfo" style="margin-top:20px"></div>
+<div class="plan" style="margin-top:16px">
+<h3>J'ai un code d'accès</h3>
+<label for="code">Code reçu après votre paiement</label>
+<input id="code" placeholder="FAC-XXXX-XXXX-XXXX" autocomplete="off">
+<button class="btn" id="act" style="margin-top:12px">Activer le Pro</button>
+<div class="paid" id="cmsg" role="status"></div>
 </div>
 </section>
 
@@ -135,14 +156,15 @@ function set(n){try{localStorage.setItem(KEY,n)}catch(e){}}
 function total(){return (parseFloat(q.value)||0)*(parseFloat(p.value)||0)}
 function fmt(v){return v.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})+' €'}
 function calc(){t.textContent=fmt(total())}
-function refresh(){var n=get();num.textContent=String(n+1).padStart(3,'0');cnt.textContent=n+' / '+LIM+' factures gratuites ce mois-ci'}
+function proExp(){try{return parseInt(localStorage.getItem('facturo-pro'))||0}catch(e){return 0}}
+function isPro(){return proExp()>Date.now()}
+function refresh(){var n=get();num.textContent=String(n+1).padStart(3,'0');cnt.textContent=isPro()?"Pro actif jusqu'au "+new Date(proExp()).toLocaleDateString('fr-FR'):n+' / '+LIM+' factures gratuites ce mois-ci'}
 q.addEventListener('input',calc);p.addEventListener('input',calc);
 document.getElementById('dl').addEventListener('click',async function(){
 var n=get();
-if(n>=LIM){m.textContent='Limite gratuite atteinte. Passez au Pro pour des factures illimitées.';document.getElementById('tarifs').scrollIntoView({behavior:'smooth'});return}
+if(!isPro()&&n>=LIM){m.textContent='Limite gratuite atteinte. Passez au Pro pour des factures illimitées.';document.getElementById('tarifs').scrollIntoView({behavior:'smooth'});return}
 var J=window.jspdf;if(!J){m.textContent='Le PDF ne peut pas être créé pour le moment.';return}
 var dls=null;try{dls=window.claude&&await window.claude.use('downloads')}catch(e){}
-if(!dls){m.textContent='Le téléchargement n\'est pas disponible ici.';return}
 var no=String(n+1).padStart(3,'0'),doc=new J.jsPDF();
 doc.setFontSize(24);doc.text('Facture n° '+no,20,28);
 doc.setFontSize(11);doc.text('Date : '+d.toLocaleDateString('fr-FR'),20,38);
@@ -151,8 +173,25 @@ doc.setFontSize(12);doc.text('Prestation',20,58);doc.text('Qté',120,58);doc.tex
 doc.text(de.value||'-',20,68);doc.text(String(q.value||0),120,68);doc.text(fmt(parseFloat(p.value)||0),150,68);
 doc.line(20,78,190,78);
 doc.setFontSize(16);doc.text('Total à payer : '+fmt(total()),20,92);
-try{await dls.save({filename:'facture-'+no+'.pdf',data:doc.output('arraybuffer')});set(n+1);refresh();m.textContent='Facture enregistrée.'}
+try{if(dls){await dls.save({filename:'facture-'+no+'.pdf',data:doc.output('arraybuffer')})}else{doc.save('facture-'+no+'.pdf')}set(n+1);refresh();m.textContent='Facture enregistrée.'}
 catch(e){m.textContent=(e&&e.code==='declined')?'Téléchargement annulé.':'Le téléchargement a échoué. Réessayez.'}
+});
+var WA='14378878662';
+var CODES=[{"h": "b4df88fcb398ee78dad1f4d23b4719d05a9bb935351c3c6af2c28f3bfa6c187b", "d": 30}, {"h": "8fcd3369b55dcfb51a60b1abb7ecf0db93df5270d28956b80d6a2087307067ea", "d": 30}, {"h": "74dbf95d08edcb19bb6024466dcd09eb7b533c618a6fb8e0407a83a4a06ef3e6", "d": 30}, {"h": "b2f78345ee46c37e90d9aaa240092543a323f407c8893eb07ca89c19bd720702", "d": 30}, {"h": "01ce812f694332a8b76a899e402ed3926effd4dba1694f3ec9642b2c8000c770", "d": 30}, {"h": "b0f39efbdd2c068699a592b76cacd28600b03a260b5aa6174a96ca01abb68a2e", "d": 30}, {"h": "7d19fc86eeb750cc04d136cab6036da257a99fbe275d710aa94ac993b4bea174", "d": 30}, {"h": "b0b8e922e5e1243fdee54e93685af2425b861e3a51e90aeb75cab8d0fa674b80", "d": 30}, {"h": "9e791d99d8f5ae013fcefe49068d94ca77cb6048fe9c51bcd558d5fdd9fc0504", "d": 30}, {"h": "b6fb6a67193e32b00c1d2e8a671da8ca849a2b4eb020b99a8ae59a0bb36916fd", "d": 30}];
+(function(){var p=document.getElementById('payinfo');
+p.innerHTML="<h3>Comment payer</h3><ol class='steps'><li>Écrivez-nous sur WhatsApp et indiquez le moyen de paiement choisi.</li><li>Vous recevez les informations de paiement en message privé.</li><li>Payez 5 900 FCFA (environ 9 €), puis envoyez la preuve de paiement.</li><li>Vous recevez votre code d'accès valable 30 jours. Entrez-le ci-dessous.</li></ol><a class='btn wa' target='_blank' rel='noopener' href='https://wa.me/"+WA+"?text="+encodeURIComponent("Bonjour, je souhaite passer à Facturo Pro.")+"'>Écrire sur WhatsApp</a>"})();
+async function sha(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')}
+document.getElementById('act').addEventListener('click',async function(){
+var cm=document.getElementById('cmsg'),v=document.getElementById('code').value.toUpperCase().replace(/\s/g,'');
+if(!v){cm.textContent='Entrez votre code.';return}
+if(!window.crypto||!crypto.subtle){cm.textContent="Impossible de vérifier le code sur ce navigateur.";return}
+var h=await sha(v),f=CODES.filter(function(c){return c.h===h})[0];
+if(!f){cm.textContent='Code invalide. Vérifiez-le et réessayez.';return}
+var used=[];try{used=JSON.parse(localStorage.getItem('facturo-used')||'[]')}catch(e){}
+if(used.indexOf(h)>-1){cm.textContent='Ce code a déjà été utilisé sur cet appareil.';return}
+used.push(h);
+try{localStorage.setItem('facturo-used',JSON.stringify(used));localStorage.setItem('facturo-pro',String(Date.now()+f.d*86400000))}catch(e){cm.textContent="Impossible d'enregistrer l'activation.";return}
+cm.textContent='Pro activé pour '+f.d+' jours. Merci !';refresh();
 });
 calc();refresh();
 </script>
